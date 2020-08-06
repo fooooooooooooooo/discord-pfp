@@ -3,7 +3,7 @@
 $('#fetch-user-button').click(function () {
     let id = $("#user-input-field").val();
 
-    $.get(`/api?id=${id}`, function (data, status) {
+    $.get(`http://discord-pfp.herokuapp.com/api?id=${id}`, function (data, status) {
         $('#the-box').removeClass('is-hidden');
         $('.main-container').css('margin-top', '1vh');
         $("html, body").animate({ scrollTop: 0 }, "slow");

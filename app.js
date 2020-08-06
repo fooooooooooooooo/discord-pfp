@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const request = require('request');
 const port = process.env.PORT || 3000;
@@ -7,6 +8,7 @@ if (process.platform === 'win32') {
     const dotenv = require('dotenv');
     dotenv.config();
 }
+app.use(cors());
 
 app.get('/avatar/', async function (req, response) {
     let id = req.query.id;
