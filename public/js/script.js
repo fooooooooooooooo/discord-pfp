@@ -60,6 +60,9 @@ function constructBadges(flagsArray) {
     let html = '';
 
     flagsArray.forEach(flag => {
+        if (flag === 'None') {
+            return;
+        }
         html += `<div class="column is-narrow"><div class="profile-badge-wrapper">${prefabs[flag]}</div></div>`;
     });
 
