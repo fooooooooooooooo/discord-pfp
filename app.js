@@ -10,23 +10,21 @@ if (process.platform === 'win32') {
 
 app.get('/avatar/', async function (req, response) {
     let id = req.query.id;
-    let avatar = '';
     const options = {
-        url: `https://discord.com/api/users/${id}`,
+        url: 'https://discord.com/api/users/' + id,
         headers: {
             'Authorization': `Bot ${process.env.DISCORD_TOKEN}`
         }
     };
-
     return request(options, function (err, res) {
         if (err != null) {
             console.error(err);
         }
         const data = JSON.parse(res.body);
+        let avatar = '';
 
         if (data.avatar == null) {
-            data.avatar = getDefaultAvatar(data
-                .discriminator);
+            data.avatar = getDefaultAvatar(data.discriminator);
         } else {
             avatar =
                 `https://cdn.discordapp.com/avatars/${id}/${data.avatar}`;
@@ -47,7 +45,7 @@ app.get('/api/', async function (req, response) {
     };
 
     const options = {
-        url: `https://discord.com/api/users/${id}`,
+        url: 'https://discord.com/api/users/' + id,
         headers: {
             'Authorization': `Bot ${process.env.DISCORD_TOKEN}`
         }
@@ -66,9 +64,10 @@ app.get('/api/', async function (req, response) {
         user.discriminator = data.discriminator;
         user.public_flags = data.public_flags;
 
+
+        // Resolve avatar hash to working image url
         if (user.avatar == null) {
-            user.avatar = getDefaultAvatar(user
-                .discriminator);
+            user.avatar = getDefaultAvatar(user.discriminator);
         } else {
             let avatar =
                 `https://cdn.discordapp.com/avatars/${id}/${user.avatar}`;
@@ -81,8 +80,7 @@ app.get('/api/', async function (req, response) {
 
 app.use(express.static('public'));
 
-
-function getDefaultAvatar(userId) {
+function getDefaultAvatar(discriminator) {
     let defaults = [
         '6debd47ed13483642cf09e832ed0bc1b',
         '322c936a8c8be1b803cd94861bdfa868',
@@ -90,7 +88,7 @@ function getDefaultAvatar(userId) {
         '0e291f67c9274a1abdddeb3fd919cbaa',
         '1cbd08c76f8af6dddce02c5138971129'
     ];
-    return `https://discordapp.com/assets/${defaults[userId % 5]}.png`;
+    return `https://discordapp.com/assets/${defaults[discriminator % 5]}.png`;
 }
 
 app.listen(port, () => {

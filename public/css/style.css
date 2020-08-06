@@ -1,0 +1,141 @@
+@import "./bulma-tooltip.min.css";
+
+.bot-tag {
+  white-space: normal;
+  height: 15px;
+  padding: 0 4px;
+  border-radius: 3px;
+  position: relative;
+  bottom: 1px;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-box-flex: 0;
+  background: #7289da;
+  color: #fff;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  vertical-align: middle;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  text-indent: 0;
+}
+
+.bot-tag-verified {
+  overflow: hidden;
+  width: 15px;
+  height: 15px;
+  margin-left: -4px;
+}
+
+.bot-tag-text {
+  font-size: 10px;
+  line-height: 15px;
+  position: relative;
+  font-weight: 500;
+}
+
+#user-discriminator {
+  vertical-align: middle;
+}
+
+#user-name {
+  margin-top: -2px;
+}
+
+.profile-badge-wrapper {
+  margin-left: 6px;
+  margin-top: 3px;
+}
+
+.profile-badge {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+  width: 24px;
+  height: 24px;
+}
+
+.profile-badge-verified-bot-developer {
+  background-image: url("https://discordapp.com/assets/45cd06af582dcd3c6b79370b4e3630de.svg");
+}
+
+.profile-badge-discord-partner {
+  background-image: url("https://discordapp.com/assets/33fedf082addb91d88abc272b4b18daa.svg");
+}
+
+.profile-badge-early-supporter {
+  background-image: url("https://discordapp.com/assets/23e59d799436a73c024819f84ea0b627.svg");
+}
+
+.profile-badge-discord-staff {
+  background-image: url("https://discordapp.com/assets/4358ad1fb423b346324516453750f569.svg");
+}
+
+.profile-badge-hypesquad-events {
+  background-image: url("https://discordapp.com/assets/6c73f47daf179ffade99f501bfc5101b.svg");
+}
+
+.profile-badge-hypesquad-bravery {
+  background-image: url("https://discordapp.com/assets/64ae1208b6aefc0a0c3681e6be36f0ff.svg");
+}
+
+.profile-badge-hypesquad-brilliance {
+  background-image: url("https://discordapp.com/assets/48cf0556d93901c8cb16317be2436523.svg");
+}
+
+.profile-badge-hypesquad-balance {
+  background-image: url("https://discordapp.com/assets/9fdc63ef8a3cc1617c7586286c34e4f1.svg");
+}
+
+.profile-badge-bug-hunter-level-1 {
+  background-image: url("https://discordapp.com/assets/f61b8981e92feead854f52e5a1ba14f0.svg");
+}
+
+.profile-badge-bug-hunter-level-2 {
+  background-image: url("https://discordapp.com/assets/9286332d6e947c91fa91569efce431b0.svg");
+}
+
+.table-user {
+  height: 60%;
+}
+
+.table-user-name {
+  padding-right: 0px !important;
+}
+
+.table-discriminator {
+  padding-left: 1px !important;
+  padding-right: 1px !important;
+}
+
+.table-badges {
+  padding-left: 1px !important;
+}
+
+.table-id {
+  padding-left: 0px !important;
+}
+
+.user-id-label {
+  padding-right: 1px !important;
+  color: grey;
+}
+
+.table-user-id {
+  padding-left: 1px !important;
+}
+
+.main-container {
+  margin-top: 30vh;
+  transition: margin-top 0.8s;
+}
+
+#user-discriminator {
+  color: grey;
+}

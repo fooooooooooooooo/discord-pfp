@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Bulma!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <section class="section" style="height:100vh">
-        <div class="container" style="margin-top: 30vh">
+        <div class="container main-container">
             <div class="columns is-centered">
                 <div class="column is-half">
                     <h1 class="title is-4 is-centered">
@@ -20,26 +21,52 @@
                         <div class="column is-9">
                             <input id="user-input-field" class="input" type="text" placeholder="User ID">
                         </div>
-                        <div class="column">
+                        <div class="column is-narrow">
                             <a id="fetch-user-button" class="button is-primary is-pulled-right">Fetch User</a>
                         </div>
                     </div>
+                    <!-- is-hidden -->
                     <div id="the-box" class="box is-hidden">
                         <div class="columns">
-                            <div class="column is-3">
+                            <div class="column is-narrow">
                                 <figure class="image is-128x128">
-                                    <img id="user-avatar" src="https://bulma.io/images/placeholders/128x128.png">
+                                    <img id="user-avatar" src="https://bulma.io/images/placeholders/128x128.png"
+                                        style="border-radius: 5px;">
                                 </figure>
                             </div>
                             <div class="column">
-                                <h1 id="user-name" class="title is-4">
-                                    <span id="user-discriminator" class="subtitle is-6"></span>
-                                </h1>
-                                <h1 id="user-id" class="title is-6"></h1>
+                                <table class="table is-narrow table-user">
+                                    <tbody>
+                                        <tr>
+                                            <td class="table-user-name">
+                                                <h1 id="user-name" class="title is-4">username</h1>
+                                            </td>
+                                            <td class="table-discriminator">
+                                                <span id="user-discriminator" class=" subtitle is-6">#0000</span>
+                                            </td>
+                                            <td class="table-badges">
+                                                <div id="badges-container" class="columns is-gapless">
+                                                    <!-- Badges go here-->
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table is-narrow table-id">
+                                    <tbody>
+                                        <tr>
+                                            <td class="user-id-label">
+                                                User ID:
+                                            </td>
+                                            <td class="table-user-id">
+                                                <span id="user-id" class="subtitle is-6">0000000000000000</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </div>
     </section>
     <footer class="footer">
         <div class="content has-text-centered">
@@ -48,7 +75,6 @@
                     Source
                 </a>
             </p>
-        </div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/script.js"></script>
