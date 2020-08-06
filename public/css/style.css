@@ -139,3 +139,7 @@
 #user-discriminator {
   color: grey;
 }
+
+.button-column {
+    margin-right: 0;
+}
