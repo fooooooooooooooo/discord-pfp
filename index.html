@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+  <head>
+    <title>discord-pfp</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="og:title" content="discord-pfp" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://discord-pfp.herokuapp.com" />
+    <meta property="og:image" content="" />
+
+    <meta name="description" content="Find Discord users by ID" />
+    <meta name="theme-color" content="#0f0f0f" />
+  </head>
+
+  <body>
+    <main class="h-screen items-center justify-center w-full flex flex-col gap-4">
+      <div id="upper">
+        <h1>Fetch Discord user by ID.</h1>
+
+        <form class="flex flex-row gap-4" id="id-form">
+          <input id="id-input" name="user-id" type="text" placeholder="User ID" autocomplete="off" />
+          <button type="submit">Fetch User</button>
+        </form>
+      </div>
+
+      <div id="the-box" class="h-0 invisible">
+        <div class="flex flex-row gap-6 bg-white dark:bg-dark-600 p-6 rounded-xl shadow-xl w-600px opacity-100">
+          <div>
+            <img id="user-avatar" class="rounded-lg" src="./icons/976070435240280116.png" width="128" height="128" />
+          </div>
+
+          <div class="flex flex-col justify-between">
+            <div class="flex flex-row items-center">
+              <span class="cursor-text text-xl">
+                <span id="user-name"></span><span class="text-gray-500">#<span id="user-disc"></span></span>
+              </span>
+
+              <div id="user-badges"></div>
+            </div>
+
+            <div>
+              <span class="text-gray-500">User ID:</span>
+              <code class="cursor-text" id="user-id">0000000000000000</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="w-full h-150px bg-light-700 dark:bg-dark-700 flex items-center justify-between px-20">
+      <div><strong>discord-pfp</strong> by <a href="https://github.com/fooooooooooooooo/">fooooooooooooooo</a></div>
+
+      <div>
+        <div id="theme-toggle" data-state="auto">
+          <div class="relative z-10 flex items-center h-4">
+            <label class="flex items-center justify-end">
+              <input value="light" type="radio" />
+              <span>Light</span>
+            </label>
+            <label>
+              <input value="auto" type="radio" />
+              <span class="absolute block -top-4 left-1/2 transform -translate-x-1/2"> Auto </span>
+            </label>
+            <label class="flex items-center">
+              <input value="dark" type="radio" />
+              <span>Dark</span>
+            </label>
+          </div>
+
+          <div class="absolute -top-0.5 left-1/2 transform -translate-x-1/2">
+            <div class="track w-12.5 h-5 bg-dark-200 light:bg-light-950 rounded-full shadow-inner"></div>
+            <div
+              class="thumb transition-left duration-300 ease-in-out absolute top-0.5 left-5 w-4 h-4 bg-white dark:bg-light-900 border-2 border-gray-800 rounded-full"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <a href="https://github.com/fooooooooooooooo/discord-pfp">Source</a> licensed
+        <a href="https://choosealicense.com/licenses/gpl-3.0/">GPL-3.0</a>
+      </div>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+    <script>
+      const theme = window.localStorage.getItem('theme');
+
+      if (theme === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches && theme !== 'light')) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+  </body>
+</html>

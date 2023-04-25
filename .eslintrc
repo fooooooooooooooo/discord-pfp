@@ -1,9 +1,0 @@
-{
-  "extends": "eslint:recommended",
-  "parser": "babel-eslint",
-  "env": {
-    "amd": true,
-    "node": true
-  },
-  "rules": {}
-}
