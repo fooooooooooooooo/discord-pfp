@@ -17,7 +17,7 @@
   <body>
     <main class="h-screen items-center justify-center w-full flex flex-col gap-4">
       <div id="upper">
-        <h1>Fetch Discord user by ID.</h1>
+        <h1 class="text-center">Fetch Discord user by ID.</h1>
 
         <form class="flex flex-row gap-4" id="id-form">
           <input id="id-input" name="user-id" type="text" placeholder="User ID" autocomplete="off" />
@@ -25,23 +25,32 @@
         </form>
       </div>
 
+      <span id="error" class="hidden text-red-500 text-center">failed to get user</span>
+
       <div id="the-box" class="h-0 invisible">
         <div class="flex flex-row gap-6 bg-white dark:bg-dark-600 p-6 rounded-xl shadow-xl w-600px opacity-100">
           <div>
-            <img id="user-avatar" class="rounded-lg" src="./icons/976070435240280116.png" width="128" height="128" />
+            <img
+              id="user-avatar"
+              class="rounded-lg"
+              src="./icons/976070435240280116.png"
+              width="128"
+              height="128"
+              alt="User avatar"
+            />
           </div>
 
-          <div class="flex flex-col justify-between">
-            <div class="flex flex-row items-center">
+          <div class="flex flex-col justify-between w-full">
+            <div class="flex flex-row items-center gap-4">
               <span class="cursor-text text-xl">
-                <span id="user-name"></span><span class="text-gray-500">#<span id="user-disc"></span></span>
+                <span id="user-name"></span><span class="text-#A7A7A7">#<span id="user-disc"></span></span>
               </span>
 
-              <div id="user-badges"></div>
+              <div id="user-badges" class="flex flex-row gap-1"></div>
             </div>
 
             <div>
-              <span class="text-gray-500">User ID:</span>
+              <span class="text-#A7A7A7">User ID:</span>
               <code class="cursor-text" id="user-id">0000000000000000</code>
             </div>
           </div>
@@ -49,38 +58,36 @@
       </div>
     </main>
 
-    <footer class="w-full h-150px bg-light-700 dark:bg-dark-700 flex items-center justify-between px-20">
+    <footer
+      class="w-full h-150px bg-light-700 dark:bg-dark-700 flex flex-col sm:flex-row items-center justify-between px-20"
+    >
       <div><strong>discord-pfp</strong> by <a href="https://github.com/fooooooooooooooo/">fooooooooooooooo</a></div>
 
-      <div>
-        <div id="theme-toggle" data-state="auto">
-          <div class="relative z-10 flex items-center h-4">
-            <label class="flex items-center justify-end">
-              <input value="light" type="radio" />
-              <span>Light</span>
-            </label>
-            <label>
-              <input value="auto" type="radio" />
-              <span class="absolute block -top-4 left-1/2 transform -translate-x-1/2"> Auto </span>
-            </label>
-            <label class="flex items-center">
-              <input value="dark" type="radio" />
-              <span>Dark</span>
-            </label>
-          </div>
+      <div id="theme-toggle">
+        <label id="auto">
+          <input value="auto" type="radio" />
+          <span>Auto</span>
+        </label>
 
-          <div class="absolute -top-0.5 left-1/2 transform -translate-x-1/2">
-            <div class="track w-12.5 h-5 bg-dark-200 light:bg-light-950 rounded-full shadow-inner"></div>
-            <div
-              class="thumb transition-left duration-300 ease-in-out absolute top-0.5 left-5 w-4 h-4 bg-white dark:bg-light-900 border-2 border-gray-800 rounded-full"
-            ></div>
-          </div>
+        <label id="light">
+          <input value="light" type="radio" />
+          <span>Light</span>
+        </label>
+
+        <div class="slider">
+          <div class="track"></div>
+          <div class="thumb"></div>
         </div>
+
+        <label id="dark">
+          <input value="dark" type="radio" />
+          <span>Dark</span>
+        </label>
       </div>
 
       <div>
         <a href="https://github.com/fooooooooooooooo/discord-pfp">Source</a> licensed
-        <a href="https://choosealicense.com/licenses/gpl-3.0/">GPL-3.0</a>
+        <a href="https://github.com/fooooooooooooooo/discord-pfp/blob/master/LICENSE">GPL-3.0</a>
       </div>
     </footer>
     <script type="module" src="/src/main.ts"></script>

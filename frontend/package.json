@@ -1,0 +1,20 @@
+{
+  "name": "frontend",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build --emptyOutDir",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "sanitize.css": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/html-minifier": "^4.0.2",
+    "dotenv": "^16.0.3",
+    "html-minifier": "^4.0.0",
+    "typescript": "^5.0.4",
+    "unocss": "^0.51.8",
+    "vite": "^4.3.4",
+    "vite-plugin-singlefile": "^0.13.5"
+  }
+}

@@ -1,9 +1,11 @@
 import { minify, Options as MinifyOptions } from 'html-minifier';
 import UnoCSS from 'unocss/vite';
-import { PluginOption, defineConfig } from 'vite';
-import { viteSingleFile } from 'vite-plugin-singlefile';
+import { defineConfig, PluginOption } from 'vite';
 
 export default defineConfig({
+  build: {
+    outDir: '../dist/public',
+  },
   plugins: [
     UnoCSS(),
     minifyHtml({

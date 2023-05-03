@@ -48,7 +48,9 @@ export function initTheme() {
   for (let i = 0; i < toggles.length; i++) {
     let toggle = toggles[i];
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', e => {
+      e.preventDefault();
+
       if (toggle.checked) {
         toggles.filter((_, index) => index != i).forEach(otherToggle => (otherToggle.checked = false));
 

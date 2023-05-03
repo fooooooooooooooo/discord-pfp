@@ -2,31 +2,22 @@
   "name": "discord-pfp",
   "version": "1.0.0",
   "description": "discord pfp from id",
-  "packageManager": "yarn@4.0.0-rc.42",
-  "main": "app.js",
+  "packageManager": "yarn@4.0.0-rc.43",
+  "private": true,
   "scripts": {
-    "api-dev": "NODE_ENV=development node app.js",
-    "api-start": "node app.js",
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --max-warnings 0"
+    "dev": "conc -n b,f \"yarn backend-dev\" \"yarn frontend-dev\"",
+    "backend-dev": "yarn workspace backend dev",
+    "frontend-dev": "yarn workspace frontend dev",
+    "build": "yarn workspaces foreach -p run build",
+    "start": "node dist/app.js"
   },
   "author": "foo",
   "license": "GPL-3.0-or-later",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "request": "^2.88.2",
-    "sanitize.css": "^13.0.0"
-  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "devDependencies": {
-    "@types/html-minifier": "^4",
-    "dotenv": "^16.0.3",
-    "html-minifier": "^4.0.0",
-    "typescript": "^5.0.4",
-    "unocss": "^0.51.8",
-    "vite": "^4.3.1",
-    "vite-plugin-singlefile": "^0.13.5"
+    "concurrently": "^8.0.1"
   }
 }
