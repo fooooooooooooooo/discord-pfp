@@ -1,4 +1,5 @@
 FROM node:20.0.0-alpine as build
+LABEL org.opencontainers.image.source="https://github.com/fooooooooooooooo/discord-pfp"
 
 WORKDIR /app
 
