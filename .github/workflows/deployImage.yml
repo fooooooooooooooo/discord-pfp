@@ -1,4 +1,4 @@
-name: Deploy Images to GHCR
+name: Deploy Image to GHCR
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
 
-      - name: 'Build Inventory Image'
+      - name: 'Build Image'
         run: |
           docker build . --tag ghcr.io/fooooooooooooooo/discord-pfp:latest
           docker push ghcr.io/fooooooooooooooo/discord-pfp:latest
