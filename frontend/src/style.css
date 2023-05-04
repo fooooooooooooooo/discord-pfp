@@ -19,7 +19,31 @@ main {
 }
 
 footer {
-  @apply w-full h-150px bg-light-700 dark:bg-dark-700 flex flex-col sm:flex-row items-center justify-between p-4 lg:px-20;
+  @apply grid w-full h-150px bg-light-700 dark:bg-dark-700 items-center p-4 lg:px-20 <sm:justify-center gap-2;
+
+  grid-template-areas: 'middle' 'start' 'end';
+}
+
+@media (min-width: 640px) {
+  footer {
+    grid-template-areas: 'start middle end';
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+footer > div {
+  @apply flex justify-center;
+  grid-area: middle;
+}
+
+footer > div:first-child {
+  @apply sm:justify-start;
+  grid-area: start;
+}
+
+footer > div:last-child {
+  @apply sm:justify-end;
+  grid-area: end;
 }
 
 input,
