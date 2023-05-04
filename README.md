@@ -6,7 +6,7 @@ discord-pfp lets you get Discord user information from a User ID
 
 Dev docker compose command
 
-```sh
+```console
 docker-compose --file docker-compose-dev.yml up -d --build
 ```
 
