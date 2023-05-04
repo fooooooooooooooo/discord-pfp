@@ -88,10 +88,6 @@ async function onSubmit(e: Event) {
 }
 
 async function fetchUser(id: string) {
-  if (!id) {
-    return null;
-  }
-
   // return {
   //   id: '80088516616269824',
   //   banner: null,
@@ -107,6 +103,10 @@ async function fetchUser(id: string) {
   //   flags: 262912,
   //   avatar_url: 'https://cdn.discordapp.com/avatars/80088516616269824/39ec2502115271c24eb969018fcd8b55',
   // };
+
+  if (!id) {
+    return null;
+  }
 
   try {
     let url = new URL(getBaseUrl());

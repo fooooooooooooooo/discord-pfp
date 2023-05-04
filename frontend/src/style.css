@@ -9,14 +9,23 @@
 }
 
 body {
-  @apply bg-light-800 text-dark-950 dark:bg-dark-900 dark:text-light-950;
+  @apply bg-light-800 text-dark-950 dark:bg-dark-900 dark:text-light-950 leading-none;
 
   font-family: 'Roboto', sans-serif;
 }
 
+main {
+  @apply h-screen items-center justify-center flex flex-col gap-4 m-4;
+}
+
+footer {
+  @apply w-full h-150px bg-light-700 dark:bg-dark-700 flex flex-col sm:flex-row items-center justify-between p-4 lg:px-20;
+}
+
 input,
 button {
-  @apply bg-white dark:bg-dark-600 h-48px px-4 border-none rounded-lg outline-none shadow-lg transition-box-shadow-150;
+  @apply bg-white dark:bg-dark-600 h-48px px-4 border-none rounded-lg outline-none shadow-lg transition-box-shadow-150 whitespace-nowrap;
+
   box-shadow: var(--un-shadow), 0 0 0 transparent;
 }
 
@@ -34,8 +43,12 @@ button {
   box-shadow: var(--un-shadow), 0 0 5px #ff2b4e;
 }
 
+h1 {
+  @apply text-2xl lg:text-2xl;
+}
+
 input {
-  @apply text-xl;
+  @apply text-xl w-full;
 }
 
 button,
@@ -48,7 +61,7 @@ a {
 }
 
 #upper {
-  @apply transition-transform-200;
+  @apply transition-transform-200 gap-4 flex flex-col;
 }
 
 #upper.move {
@@ -56,7 +69,7 @@ a {
 }
 
 #the-box {
-  @apply relative -top-150px;
+  @apply relative -top-150px flex flex-col sm:flex-row gap-6 bg-white dark:bg-dark-600 p-6 rounded-xl shadow-xl lg:w-600px opacity-100 items-center;
 }
 
 #the-box.visible {
