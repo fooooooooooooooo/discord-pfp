@@ -16,7 +16,7 @@ let theBox: HTMLElement;
 let userName: HTMLElement;
 let userId: HTMLElement;
 let userDisc: HTMLElement;
-let userAvatar: HTMLImageElement;
+let userAvatar: HTMLObjectElement;
 let userBadges: HTMLElement;
 
 let error: HTMLElement;
@@ -63,6 +63,8 @@ async function onSubmit(e: Event) {
   let user = await fetchUser(idInput?.value ?? '');
 
   if (!user) {
+    theBox.classList.add('invisible');
+    upper.classList.remove('move');
     error.textContent = 'failed to get user';
     error.classList.remove('hidden');
     return;
@@ -72,9 +74,13 @@ async function onSubmit(e: Event) {
   error.classList.add('hidden');
 
   userName.textContent = user.username;
-  userDisc.textContent = user.discriminator;
+
+  if (user.discriminator != '0') {
+    userDisc.textContent = `#${user.discriminator}`;
+  }
+
   userId.textContent = user.id;
-  userAvatar.src = user.avatar_url;
+  userAvatar.data = user.avatar_url;
 
   let flags = getFlagNames(user.public_flags);
 
@@ -88,6 +94,7 @@ async function onSubmit(e: Event) {
 }
 
 async function fetchUser(id: string) {
+  // for test
   // return {
   //   id: '80088516616269824',
   //   banner: null,

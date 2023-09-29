@@ -234,7 +234,7 @@ a {
 }
 
 [data-tooltip]:hover::after {
-  @apply absolute p-2 bottom-100% mb-1 left-50% bg-dark-300 whitespace-nowrap rounded-lg;
+  @apply absolute p-2 bottom-100% mb-1 left-50% bg-white dark:bg-dark-300 text-black dark:text-white whitespace-nowrap rounded-lg shadow-md;
 
   content: attr(data-tooltip);
   transform: translateX(-50%);
