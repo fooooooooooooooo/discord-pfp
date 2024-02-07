@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+  <head>
+    <title>discord-pfp</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <meta property="og:title" content="discord-pfp" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://id.c3dh.xyz" />
+    <meta property="og:image" content="" />
+
+    <meta name="description" content="Find Discord users by ID" />
+    <meta name="theme-color" content="#0f0f0f" />
+  </head>
+
+  <body v-scope="{}">
+    <template id="icon-template">
+      <img width="32" height="32" :alt="`${name} badge`" :src="`icons/${icon}`" />
+    </template>
+    <main>
+      <div id="upper" :class="{ move: (showUser && user) }">
+        <h1 class="text-center">Fetch Discord user by ID</h1>
+
+        <form class="flex flex-row gap-4" @submit.prevent="onSubmit">
+          <input v-model="id" @input.prevent="onInput" type="text" placeholder="User ID" autocomplete="off" />
+          <button type="submit">Fetch User</button>
+        </form>
+      </div>
+
+      <span v-if="showError" class="text-center text-red-500">{{ error }}</span>
+
+      <div id="the-box" :class="(showUser && user) ? 'visible' : 'invisible'">
+        <div class="size-[128px]">
+          <object
+            class="flex size-[128px] items-center justify-center rounded-lg text-[#A7A7A7]"
+            :data="user?.avatar_url ?? 'icons/976070435240280116.png'"
+            type="image/png"
+            alt="User avatar"
+          >
+            <div
+              class="flex h-full w-full items-center justify-center rounded-lg text-[#dee2e6] dark:text-[#232325]"
+              data-tooltip="Avatar failed to load"
+            >
+              <svg
+                data-tooltip="Avatar failed to load"
+                xmlns="http://www.w3.org/2000/svg"
+                width="75%"
+                height="75%"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-ban"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="m4.9 4.9 14.2 14.2" />
+              </svg>
+            </div>
+          </object>
+        </div>
+
+        <div class="flex h-full w-full flex-col justify-between gap-4">
+          <div class="flex flex-row flex-wrap gap-4 sm:items-center">
+            <span v-if="oldUser" class="flex cursor-text gap-2 text-xl">
+              <span>{{ user?.username }}</span><span class="text-[#A7A7A7]">{{ user?.discriminator }}</span>
+            </span>
+            <span v-else class="flex cursor-text gap-2 text-xl">
+              <span>{{ user?.global_name }}</span><span class="text-[#A7A7A7]">{{ user?.username }}</span>
+            </span>
+
+            <div class="flex flex-row gap-1">
+              <span v-for="[name, icon] in badges" v-scope="Icon({name, icon})"></span>
+            </div>
+          </div>
+
+          <div>
+            <span class="text-[#A7A7A7]">User ID:</span>
+            <code class="cursor-text">{{ user?.id ?? 0 }}</code>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div>
+        <span><strong>discord-pfp</strong> by <a href="https://github.com/fooooooooooooooo/">fooooooooooooooo</a></span>
+      </div>
+
+      <div>
+        <div id="theme-toggle">
+          <label id="auto">
+            <input value="auto" type="radio" />
+            <span>Auto</span>
+          </label>
+
+          <label id="light">
+            <input value="light" type="radio" />
+            <span>Light</span>
+          </label>
+
+          <div class="slider">
+            <div class="track"></div>
+            <div class="thumb"></div>
+          </div>
+
+          <label id="dark">
+            <input value="dark" type="radio" />
+            <span>Dark</span>
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <span>
+          <a href="https://github.com/fooooooooooooooo/discord-pfp">Source</a> licensed
+          <a href="https://github.com/fooooooooooooooo/discord-pfp/blob/master/LICENSE">GPL-3.0</a>
+        </span>
+      </div>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+    <script>
+      const theme = window.localStorage.getItem('theme');
+
+      if (theme === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches && theme !== 'light')) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+  </body>
+</html>

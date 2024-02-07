@@ -1,0 +1,23 @@
+[package]
+name = "discord-pfp-worker"
+version = "0.1.0"
+edition = "2021"
+
+# https://github.com/rustwasm/wasm-pack/issues/1247
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[lib]
+path = "worker/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+serde = { version = "1.0.196", features = ["derive"] }
+serde_json = "1.0.113"
+thiserror = "1.0.56"
+worker = "0.0.18"
+
+[profile.release]
+lto = true
+strip = true
+codegen-units = 1

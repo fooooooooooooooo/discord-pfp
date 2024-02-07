@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
@@ -9,17 +13,17 @@
 }
 
 body {
-  @apply bg-light-800 text-dark-950 dark:bg-dark-900 dark:text-light-950 leading-none;
+  @apply bg-light-800 leading-none text-dark-950 dark:bg-dark-900 dark:text-light-950;
 
   font-family: 'Roboto', sans-serif;
 }
 
 main {
-  @apply h-screen items-center justify-center flex flex-col gap-4 m-4;
+  @apply m-4 flex h-screen flex-col items-center justify-center gap-4;
 }
 
 footer {
-  @apply grid w-full h-150px bg-light-700 dark:bg-dark-700 items-center p-4 lg:px-20 <sm:justify-center gap-2;
+  @apply grid h-[150px] w-full items-center justify-center gap-2 bg-light-700 p-4 dark:bg-dark-700 sm:justify-normal lg:px-20;
 
   grid-template-areas: 'middle' 'start' 'end';
 }
@@ -48,23 +52,34 @@ footer > div:last-child {
 
 input,
 button {
-  @apply bg-white dark:bg-dark-600 h-48px px-4 border-none rounded-lg outline-none shadow-lg transition-box-shadow-150 whitespace-nowrap;
+  @apply h-[48px] whitespace-nowrap rounded-lg border-none bg-white px-4 shadow-lg outline-none transition-shadow duration-150 dark:bg-dark-600;
 
-  box-shadow: var(--un-shadow), 0 0 0 transparent;
+  box-shadow:
+    var(--tw-shadow),
+    0 0 0 transparent;
+}
+
+input:focus-visible,
+button:focus-visible {
+  @apply outline-none;
 }
 
 .dark input:hover,
 .dark input:focus,
 .dark button:hover,
 .dark button:focus {
-  box-shadow: var(--un-shadow), 0 0 5px #cc223e;
+  box-shadow:
+    var(--tw-shadow),
+    0 0 5px #cc223e;
 }
 
 .light input:hover,
 .light input:focus,
 .light button:hover,
 .light button:focus {
-  box-shadow: var(--un-shadow), 0 0 5px #ff2b4e;
+  box-shadow:
+    var(--tw-shadow),
+    0 0 5px #ff2b4e;
 }
 
 h1 {
@@ -72,7 +87,7 @@ h1 {
 }
 
 input {
-  @apply text-xl w-full;
+  @apply w-full text-xl;
 }
 
 button,
@@ -81,11 +96,16 @@ img {
 }
 
 a {
-  @apply decoration-none color-#cc223e dark:hover:color-#991a2f hover:color-#ff2b4e transition-color;
+  @apply text-[#cc223e] no-underline transition-colors hover:text-[#ff2b4e] dark:hover:text-[#991a2f];
+}
+
+a:focus-visible,
+#theme-toggle label:has(input:focus-visible) {
+  @apply rounded-sm outline outline-2 outline-offset-2 outline-blue-500;
 }
 
 #upper {
-  @apply transition-transform-200 gap-4 flex flex-col;
+  @apply flex flex-col gap-4 transition-transform duration-200;
 }
 
 #upper.move {
@@ -93,7 +113,7 @@ a {
 }
 
 #the-box {
-  @apply relative -top-150px flex flex-col sm:flex-row gap-6 bg-white dark:bg-dark-600 p-6 rounded-xl shadow-xl lg:w-600px opacity-100 items-center;
+  @apply relative -top-[150px] flex flex-col items-center gap-6 rounded-xl bg-white p-6 opacity-100 shadow-xl dark:bg-dark-600 sm:flex-row lg:w-[600px];
 }
 
 #the-box.visible {
@@ -139,15 +159,15 @@ a {
 }
 
 #theme-toggle > .buttons {
-  @apply relative z-10 flex items-center h-4 gap-8;
+  @apply relative z-10 flex h-4 items-center gap-8;
 }
 
 #theme-toggle input {
-  @apply absolute block w-full h-full inset-0 cursor-pointer opacity-0;
+  @apply absolute inset-0 block h-full w-full cursor-pointer opacity-0;
 }
 
 #theme-toggle #auto input::after {
-  @apply absolute w-16px h-5 left-50% z-100;
+  @apply absolute left-1/2 z-[100] h-5 w-[16px];
 
   top: calc(100% + 0.25rem);
   content: '';
@@ -156,19 +176,19 @@ a {
 
 #theme-toggle #light input::after,
 #theme-toggle #dark input::after {
-  @apply w-25px -top-0.5;
+  @apply -top-0.5 w-[25px];
 }
 
 #theme-toggle #light input::after {
-  @apply left-100%;
+  @apply left-full;
 }
 
 #theme-toggle #dark input::after {
-  @apply right-100%;
+  @apply right-full;
 }
 
 #theme-toggle input::after {
-  @apply absolute h-5 z-10;
+  @apply absolute z-10 h-5;
 
   content: '';
 }
@@ -182,9 +202,27 @@ a {
 }
 
 #theme-toggle label span {
-  @apply uppercase opacity-65 cursor-pointer text-xs font-bold select-none;
+  @apply cursor-pointer select-none text-xs font-bold uppercase opacity-65;
 
   transition: opacity 150ms ease-in-out;
+}
+
+#theme-toggle label::after {
+  @apply absolute -bottom-1.5 -left-2 -right-2 -top-1.5 z-[101] cursor-pointer;
+  @apply !bg-pink-500 bg-opacity-25;
+  content: '';
+}
+
+#theme-toggle #auto::after {
+  bottom: -1.75rem;
+}
+
+#theme-toggle #light::after {
+  right: -1.75rem;
+}
+
+#theme-toggle #dark::after {
+  left: -1.75rem;
 }
 
 .dark #theme-toggle #dark span,
@@ -204,14 +242,13 @@ a {
 }
 
 .slider > .track {
-  @apply w-12.5 h-5 bg-dark-200 light:bg-light-950 rounded-full shadow-inner;
+  @apply h-5 w-[3.5rem] rounded-full bg-light-950 shadow-inner dark:bg-dark-200;
 }
 
 .slider > .thumb {
-  @apply left-50% duration-300 ease-in-out absolute top-0.5 bottom-0.5 w-4 h-4 bg-white dark:bg-light-900 border-2 border-gray-800 rounded-full;
+  @apply absolute bottom-0.5 left-1/2 top-0.5 h-4 w-4 rounded-full bg-white duration-300 ease-in-out dark:bg-light-900;
 
   transform: translateX(0);
-
   transition: transform 150ms ease-in-out;
 }
 
@@ -224,7 +261,7 @@ a {
 }
 
 .auto #theme-toggle .thumb {
-  transform: translateX(-50%);
+  transform: translateX(-1/2);
 }
 
 /* tooltips */
@@ -234,10 +271,10 @@ a {
 }
 
 [data-tooltip]:hover::after {
-  @apply absolute p-2 bottom-100% mb-1 left-50% bg-white dark:bg-dark-300 text-black dark:text-white whitespace-nowrap rounded-lg shadow-md;
+  @apply absolute bottom-full left-1/2 mb-1 whitespace-nowrap rounded-lg bg-white p-2 text-black shadow-md dark:bg-dark-300 dark:text-white;
 
   content: attr(data-tooltip);
-  transform: translateX(-50%);
+  transform: translateX(-1/2);
 
   animation: fade-in 150ms ease-in-out;
 }

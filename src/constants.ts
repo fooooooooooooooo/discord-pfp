@@ -17,7 +17,7 @@ export const FLAG_ICONS = {
   INTERNAL_APPLICATION: '',
   SYSTEM: '',
   HAS_UNREAD_URGENT_MESSAGES: '',
-  BUG_HUNTER_LEVEL_2: 'discordbughunter2',
+  BUG_HUNTER_LEVEL_2: 'discordbughunter2.svg',
   UNDERAGE_DELETED: '',
   VERIFIED_BOT: '',
   VERIFIED_DEVELOPER: 'discordbotdev.svg',
@@ -41,7 +41,8 @@ export const FLAG_ICONS = {
   RESTRICTED_COLLABORATOR: '',
 };
 
-// https://github.com/Delitefully/DiscordLists/blob/master/flags.md
+// https://github.com/Delitefully/DiscordLists/blob/master/flags.md#user-flags
+// updated a8670bd80bad3b67c2f992288c9dd86fda17dead 2024-02-07
 export const FLAGS: [number, FLAG_NAME][] = [
   [1, 'STAFF'],
   [2, 'PARTNER'],
@@ -81,10 +82,14 @@ export const FLAGS: [number, FLAG_NAME][] = [
   [2251799813685248, 'RESTRICTED_COLLABORATOR'],
 ];
 
-// https://github.com/Delitefully/DiscordLists/blob/master/flags.md
-// [ name, description, public, documented, 1 << shift ]
+// https://github.com/Delitefully/DiscordLists/blob/master/flags.md#user-flags
+type Name = string;
+type Description = string;
+type Public = boolean;
+type Documented = boolean;
+type Shift = number;
 // prettier-ignore
-export const FLAG_INFO: {[key in FLAG_NAME]: [string, string, boolean, boolean, number]} = {
+export const FLAG_INFO: { [key in FLAG_NAME]: [Name, Description, Public, Documented, Shift] } = {
   STAFF                        : [ 'Staff'                        ,'Discord Employee'                                            ,true  ,true  ,0  ],
   PARTNER                      : [ 'Partner'                      ,'Discord Partner'                                             ,true  ,true  ,1  ],
   HYPESQUAD                    : [ 'Hypesquad'                    ,'HypeSquad Events'                                            ,true  ,true  ,2  ],

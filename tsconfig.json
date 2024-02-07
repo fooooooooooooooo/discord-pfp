@@ -5,6 +5,8 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+    // ignore exports so petite-vue types work
+    "resolvePackageJsonExports": false,
 
     /* Bundler mode */
     "moduleResolution": "bundler",

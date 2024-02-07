@@ -1,23 +1,29 @@
 {
+  "private": true,
   "name": "discord-pfp",
   "version": "1.0.0",
-  "description": "discord pfp from id",
-  "packageManager": "yarn@4.0.0-rc.43",
-  "private": true,
-  "scripts": {
-    "dev": "conc -n b,f \"yarn backend-dev\" \"yarn frontend-dev\"",
-    "backend-dev": "yarn workspace backend dev",
-    "frontend-dev": "yarn workspace frontend dev",
-    "build": "yarn workspaces foreach -p run build",
-    "start": "node dist/app.js"
-  },
-  "author": "foo",
+  "author": "fooooooooooooooo",
   "license": "GPL-3.0-or-later",
-  "workspaces": [
-    "frontend",
-    "backend"
-  ],
+  "description": "discord pfp from id",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build --emptyOutDir",
+    "preview": "vite preview"
+  },
   "devDependencies": {
-    "concurrently": "^8.2.1"
-  }
+    "autoprefixer": "^10.4.17",
+    "dotenv": "^16.4.1",
+    "postcss": "^8.4.34",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "rollup": "^4.9.6",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
+    "wrangler": "^3.27.0"
+  },
+  "dependencies": {
+    "petite-vue": "^0.4.1"
+  },
+  "packageManager": "yarn@4.1.0"
 }

@@ -1,3 +1,5 @@
 {
-  "unocss.root": ["frontend/"]
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }

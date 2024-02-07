@@ -6,3 +6,6 @@ singleQuote: true
 trailingComma: all
 semi: true
 arrowParens: avoid
+plugins:
+  - prettier-plugin-tailwindcss
+tailwindConfig: tailwind.config.ts

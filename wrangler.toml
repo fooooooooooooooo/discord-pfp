@@ -1,0 +1,11 @@
+name = "discord-pfp"
+main = "build/worker/shim.mjs"
+compatibility_date = "2023-06-28"
+
+routes = [
+  { zone_name = "c3dh.xyz", pattern = "id.c3dh.xyz/api/*" },
+  { zone_name = "c3dh.xyz", pattern = "id.c3dh.xyz/avatar/*" },
+]
+
+[build]
+command = "cargo install -q worker-build && worker-build --release"
