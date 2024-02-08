@@ -19,7 +19,8 @@ body {
 }
 
 main {
-  @apply m-4 flex h-screen flex-col items-center justify-center gap-4;
+  @apply m-4 flex flex-col items-center justify-center gap-4;
+  height: calc(100vh - 2rem);
 }
 
 footer {
@@ -52,7 +53,9 @@ footer > div:last-child {
 
 input,
 button {
-  @apply h-[48px] whitespace-nowrap rounded-lg border-none bg-white px-4 shadow-lg outline-none transition-shadow duration-150 dark:bg-dark-600;
+  @apply h-[48px] whitespace-nowrap rounded-lg border-none px-4 shadow-lg outline-none transition-shadow duration-150 ease-in-out;
+  /* for some reason something (probably tailwind) is applying background-color: transparent to buttons */
+  @apply !bg-white dark:!bg-dark-600;
 
   box-shadow:
     var(--tw-shadow),
@@ -209,7 +212,6 @@ a:focus-visible,
 
 #theme-toggle label::after {
   @apply absolute -bottom-1.5 -left-2 -right-2 -top-1.5 z-[101] cursor-pointer;
-  @apply !bg-pink-500 bg-opacity-25;
   content: '';
 }
 
@@ -242,7 +244,7 @@ a:focus-visible,
 }
 
 .slider > .track {
-  @apply h-5 w-[3.5rem] rounded-full bg-light-950 shadow-inner dark:bg-dark-200;
+  @apply h-5 w-[3.2rem] rounded-full bg-light-950 shadow-inner dark:bg-dark-200;
 }
 
 .slider > .thumb {
@@ -261,7 +263,7 @@ a:focus-visible,
 }
 
 .auto #theme-toggle .thumb {
-  transform: translateX(-1/2);
+  transform: translateX(-50%);
 }
 
 /* tooltips */

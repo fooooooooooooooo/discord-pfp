@@ -1,9 +1,11 @@
 .yarn/*
-!.yarn/cache
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
+!.yarn/cache/
+!.yarn/releases/
+!.yarn/plugins/
+!.yarn/sdks/
+!.yarn/versions/
+
+.wrangler/
 
 node_modules/
 dist/

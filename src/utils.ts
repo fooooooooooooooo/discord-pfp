@@ -1,10 +1,11 @@
 import { DEFAULT_ICON, FLAGS, FLAG_ICONS, FLAG_INFO, type FLAG_NAME } from './constants';
 
-export function getFlagNames(flagInt: number): FLAG_NAME[] {
+function getFlagNames(flagInt: number): FLAG_NAME[] {
   return FLAGS.filter(([id, _]) => flagInt & id).map(([_, name]) => name);
 }
 
-export function createBadgeElements(flags: FLAG_NAME[]): [string, string][] {
+export function getBadges(flagInt: number): [string, string][] {
+  let flags = getFlagNames(flagInt);
   return flags.map(flagId => {
     let icon = FLAG_ICONS[flagId];
 
@@ -16,4 +17,13 @@ export function createBadgeElements(flags: FLAG_NAME[]): [string, string][] {
 
     return [flagInfo[0], icon];
   });
+}
+
+export function getBaseUrl() {
+  let { protocol, hostname, port } = window.location;
+  const origin = `${protocol}//${hostname}`;
+
+  port = (import.meta as any).env?.DEV ? '8787' : port;
+
+  return `${port === '80' || port === '443' ? origin : `${origin}:${port}`}/api`;
 }

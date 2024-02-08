@@ -1,7 +1,7 @@
 import { createApp } from 'petite-vue';
 import '../assets/style.css';
 import { initTheme } from './theme';
-import { createBadgeElements as getBadges, getFlagNames } from './utils';
+import { getBadges, getBaseUrl } from './utils';
 
 if (document.readyState !== 'loading') {
   initTheme();
@@ -69,12 +69,12 @@ const initialState = {
     this.showError = false;
     this.error = '';
 
-    let user = await fetchUser(this.id);
+    let [user, error] = await fetchUser(this.id);
 
-    if (!user) {
+    if (!user || error) {
       this.showUser = false;
       this.showError = true;
-      this.error = 'failed to get user';
+      this.error = error?.message || 'failed to get user';
       this.user = null;
       return;
     }
@@ -83,7 +83,7 @@ const initialState = {
     this.user = user as User;
 
     this.oldUser = !!(this.user.discriminator && this.user.discriminator !== 0);
-    this.badges = getBadges(getFlagNames(this.user.public_flags));
+    this.badges = getBadges(this.user.public_flags);
   },
 };
 
@@ -92,52 +92,42 @@ createApp({
   ...initialState,
 }).mount();
 
-async function fetchUser(id: string) {
+async function fetchUser(id: string): Promise<[User, null] | [null, Error]> {
   // for test
-  return {
-    id: '80088516616269824',
-    username: 'danny',
-    avatar: '890bf25cf34a6a164c5c6eee28430904',
-    discriminator: 0,
-    public_flags: 262912,
-    premium_type: 2,
-    flags: 262912,
-    banner: null,
-    accent_color: null,
-    global_name: 'Danny',
-    avatar_decoration_data: null,
-    banner_color: null,
-    avatar_url: 'https://cdn.discordapp.com/avatars/80088516616269824/890bf25cf34a6a164c5c6eee28430904',
-  };
+  // return {
+  //   id: '80088516616269824',
+  //   username: 'danny',
+  //   avatar: '890bf25cf34a6a164c5c6eee28430904',
+  //   discriminator: 0,
+  //   public_flags: 262912,
+  //   premium_type: 2,
+  //   flags: 262912,
+  //   banner: null,
+  //   accent_color: null,
+  //   global_name: 'Danny',
+  //   avatar_decoration_data: null,
+  //   banner_color: null,
+  //   avatar_url: 'https://cdn.discordapp.com/avatars/80088516616269824/890bf25cf34a6a164c5c6eee28430904',
+  // };
 
   if (!id) {
-    return null;
+    return [null, new Error('id is empty')];
   }
 
   try {
-    let url = new URL(getBaseUrl());
-    url.searchParams.set('id', id);
-
-    let res = await fetch(url);
+    let res = await fetch(`${getBaseUrl()}/${id}`);
 
     if (res.status < 200 || res.status >= 300) {
-      return null;
+      return [null, new Error(`failed to fetch user: ${res.status} ${res.statusText} ${await res.text()}`)];
     }
 
     let user = await res.json();
 
     console.debug(user);
 
-    return user;
+    return [user, null];
   } catch (e) {
     console.error('failed to fetch user', e);
-    return null;
+    return [null, e as Error];
   }
-}
-
-function getBaseUrl() {
-  const l = window.location;
-  const origin = `${l.protocol}//${l.hostname}`;
-
-  return `${(import.meta as any).env?.DEV ? `${origin}:3000` : `${origin}:${l.port}`}/api`;
 }
