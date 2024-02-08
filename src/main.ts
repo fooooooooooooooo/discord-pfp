@@ -69,6 +69,10 @@ const initialState = {
     this.showError = false;
     this.error = '';
 
+    if (!this.id) {
+      return;
+    }
+
     let [user, error] = await fetchUser(this.id);
 
     if (!user || error) {
@@ -109,11 +113,6 @@ async function fetchUser(id: string): Promise<[User, null] | [null, Error]> {
   //   banner_color: null,
   //   avatar_url: 'https://cdn.discordapp.com/avatars/80088516616269824/890bf25cf34a6a164c5c6eee28430904',
   // };
-
-  if (!id) {
-    return [null, new Error('id is empty')];
-  }
-
   try {
     let res = await fetch(`${getBaseUrl()}/${id}`);
 

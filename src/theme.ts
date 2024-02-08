@@ -1,4 +1,10 @@
-import { $, $$ } from './fooquery';
+function $<T extends HTMLElement>(selector: string): T | null {
+  return document.querySelector(selector);
+}
+
+function $$<T extends HTMLElement>(selector: string): T[] | null {
+  return Array.from(document.querySelectorAll(selector));
+}
 
 const matchDarkScheme = () => window.matchMedia('(prefers-color-scheme: dark)');
 
