@@ -5,7 +5,7 @@ function getFlagNames(flagInt: number): FLAG_NAME[] {
 }
 
 export function getBadges(flagInt: number): [string, string][] {
-  let flags = getFlagNames(flagInt);
+  const flags = getFlagNames(flagInt);
   return flags.map(flagId => {
     let icon = FLAG_ICONS[flagId];
 
@@ -13,7 +13,7 @@ export function getBadges(flagInt: number): [string, string][] {
       icon = DEFAULT_ICON;
     }
 
-    let flagInfo = FLAG_INFO[flagId];
+    const flagInfo = FLAG_INFO[flagId];
 
     return [flagInfo[0], icon];
   });
@@ -23,7 +23,7 @@ export function getBaseUrl() {
   let { protocol, hostname, port } = window.location;
   const origin = `${protocol}//${hostname}`;
 
-  port = (import.meta as any).env?.DEV ? '8787' : port;
+  port = (import.meta as unknown as { env?: { DEV?: string } }).env?.DEV ? '8787' : port;
 
   return `${port === '80' || port === '443' ? origin : `${origin}:${port}`}/api`;
 }

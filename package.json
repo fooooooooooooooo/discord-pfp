@@ -11,19 +11,19 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.17",
-    "dotenv": "^16.4.1",
-    "postcss": "^8.4.34",
+    "autoprefixer": "^10.4.19",
+    "dotenv": "^16.4.5",
+    "postcss": "^8.4.38",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.11",
-    "rollup": "^4.9.6",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.12",
-    "wrangler": "^3.27.0"
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "rollup": "^4.16.4",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10",
+    "wrangler": "^3.52.0"
   },
   "dependencies": {
     "petite-vue": "^0.4.1"
   },
-  "packageManager": "yarn@4.1.0"
+  "packageManager": "yarn@4.1.1"
 }

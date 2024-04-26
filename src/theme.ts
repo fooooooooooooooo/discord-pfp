@@ -29,7 +29,7 @@ function updateTheme() {
     return;
   }
 
-  let prefersDark = matchDarkScheme().matches;
+  const prefersDark = matchDarkScheme().matches;
 
   setTheme(prefersDark ? 'dark' : 'light', true);
 }
@@ -41,26 +41,28 @@ export function initTheme() {
 
   // set the initial selected theme
   if (theme) {
-    let toggle = $<HTMLInputElement>(`#theme-toggle input[value='${theme}']`);
+    const toggle = $<HTMLInputElement>(`#theme-toggle input[value='${theme}']`);
 
     if (toggle) {
       toggle.checked = true;
     }
   }
 
-  toggles = $$<HTMLInputElement>('#theme-toggle input')!;
+  toggles = $$<HTMLInputElement>('#theme-toggle input') as HTMLInputElement[];
 
   // add listeners
   for (let i = 0; i < toggles.length; i++) {
-    let toggle = toggles[i];
+    const toggle = toggles[i];
 
     toggle.addEventListener('click', e => {
       e.preventDefault();
 
       if (toggle.checked) {
-        toggles.filter((_, index) => index != i).forEach(otherToggle => (otherToggle.checked = false));
+        for (const otherToggle of toggles.filter((_, index) => index !== i)) {
+          otherToggle.checked = false;
+        }
 
-        let theme = toggle.value;
+        const theme = toggle.value;
 
         if (['dark', 'light'].includes(theme)) {
           window.localStorage.setItem('theme', theme);

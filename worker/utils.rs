@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use worker::{Fetch, Headers, Method, Request, RequestInit, Response};
+use worker::{console_log, Fetch, Headers, Method, Request, RequestInit, Response};
 
 #[cfg(feature = "console_error_panic_hook")]
 pub fn set_panic_hook() {
@@ -27,7 +27,7 @@ pub struct DiscordUser {
   pub avatar: Option<String>,
   pub discriminator: String,
   pub public_flags: u32,
-  pub premium_type: u32,
+  pub premium_type: Option<u32>,
   pub flags: u32,
   pub banner: Option<String>,
   pub accent_color: Option<u32>,
@@ -53,7 +53,8 @@ pub struct User {
   #[serde(skip_serializing_if = "Option::is_none")]
   pub discriminator: Option<u16>,
   pub public_flags: u32,
-  pub premium_type: u32,
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub premium_type: Option<u32>,
   pub flags: u32,
   #[serde(skip_serializing_if = "Option::is_none")]
   pub banner: Option<String>,
@@ -81,7 +82,10 @@ async fn req_user(token: &str, id: &str) -> Result<Response, Error> {
 
   let mut res = Fetch::Request(req).send().await?;
 
-  if res.status_code() < 200 || res.status_code() >= 300 {
+  #[cfg(debug_assertions)]
+  console_log!("{:?}", res.headers());
+
+  if !(200..=299).contains(&res.status_code()) {
     return Err(Error::http(&mut res).await);
   }
 
@@ -111,14 +115,14 @@ pub async fn get_user(token: &str, id: &str) -> Result<User, Error> {
   let user: DiscordUser = res.json().await?;
 
   let avatar_url = get_avatar(&user.id, &user.avatar);
-  let discriminator: u16 = user.discriminator.parse().unwrap_or(0);
+  let discriminator: Option<u16> = user.discriminator.parse().ok().filter(|d| *d != 0);
 
   Ok(User {
     id: user.id,
     username: user.username,
     avatar: user.avatar,
     avatar_url,
-    discriminator: if discriminator == 0 { None } else { Some(discriminator) },
+    discriminator,
     public_flags: user.public_flags,
     premium_type: user.premium_type,
     flags: user.flags,

@@ -18,7 +18,6 @@ type User = {
   avatar_url: string;
   discriminator?: number;
   public_flags: number;
-  premium_type: number;
   flags: number;
   banner?: string;
   accent_color?: number;
@@ -73,7 +72,7 @@ const initialState = {
       return;
     }
 
-    let [user, error] = await fetchUser(this.id);
+    const [user, error] = await fetchUser(this.id);
 
     if (!user || error) {
       this.showUser = false;
@@ -104,7 +103,6 @@ async function fetchUser(id: string): Promise<[User, null] | [null, Error]> {
   //   avatar: '890bf25cf34a6a164c5c6eee28430904',
   //   discriminator: 0,
   //   public_flags: 262912,
-  //   premium_type: 2,
   //   flags: 262912,
   //   banner: null,
   //   accent_color: null,
@@ -114,13 +112,13 @@ async function fetchUser(id: string): Promise<[User, null] | [null, Error]> {
   //   avatar_url: 'https://cdn.discordapp.com/avatars/80088516616269824/890bf25cf34a6a164c5c6eee28430904',
   // };
   try {
-    let res = await fetch(`${getBaseUrl()}/${id}`);
+    const res = await fetch(`${getBaseUrl()}/${id}`);
 
     if (res.status < 200 || res.status >= 300) {
       return [null, new Error(`failed to fetch user: ${res.status} ${res.statusText} ${await res.text()}`)];
     }
 
-    let user = await res.json();
+    const user = await res.json();
 
     console.debug(user);
 
